@@ -1,22 +1,13 @@
 package com.example.demo;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import pojo.PreservationConfiguration;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.List;
 import java.util.Map;
 
 
@@ -49,7 +40,7 @@ public class DemoApplication {
 			System.out.println(preservationConfiguration.getMaxPDVDocs());
 			System.out.println(preservationConfiguration.getMaxPDVSize());
 
-			System.out.println("_------------------------------------------------------");
+			System.out.println("-------------------------------------------------------");
 
 			System.out.println("Mappa contiene:");
 			Map<String,Integer> variables = preservationConfiguration.getMap();

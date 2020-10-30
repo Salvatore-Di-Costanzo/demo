@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PreservationConfiguration">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MaxPDVSize" type="xs:unsignedShort" />
+                <xs:element name="MaxPDVDocs" type="xs:unsignedShort" />
+                <xs:element name="ClassiDocumentali">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="ClasseDocumentale">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="id" type="xs:string" />
+                                        <xs:element name="terminiConservazione" type="xs:unsignedShort" />
+                                        <xs:element name="mappings">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="metadataSystem">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="docPrincipale">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="key">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="field" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="valuetype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="fieldtype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="mandatoryForPreservation" type="xs:boolean" use="required" />
+                                                                                    <xs:attribute name="preservationPurpose" type="xs:unsignedByte" use="required" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="allegati">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element maxOccurs="unbounded" name="key">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="field" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="valuetype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="fieldtype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="mandatoryForPreservation" type="xs:unsignedByte" use="required" />
+                                                                                    <xs:attribute name="preservationPurpose" type="xs:boolean" use="required" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="metadataCustom">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="docPrincipale">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element maxOccurs="unbounded" name="key">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="field" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="valuetype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="fieldtype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="mandatoryForPreservation" type="xs:boolean" use="required" />
+                                                                                    <xs:attribute name="preservationPurpose" type="xs:boolean" use="required" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="allegati">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element maxOccurs="unbounded" name="key">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="field" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="valuetype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="fieldtype" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="mandatoryForPreservation" type="xs:boolean" use="required" />
+                                                                                    <xs:attribute name="preservationPurpose" type="xs:boolean" use="required" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

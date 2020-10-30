@@ -8,6 +8,8 @@
 
 package pojo;
 
+import com.example.demo.Allegati;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -270,6 +272,17 @@ public class PreservationConfiguration {
         variables.put("MaxPDVDocs",getMaxPDVDocs());
 
         return variables;
+    }
+
+    public Map<String, Allegati> getMapAllegati(){
+        Allegati allegati = new Allegati();
+        allegati.allegatiList(this);
+
+        Map<String, Allegati> mappa = new HashMap<>();
+
+        mappa.put("Allegati",allegati);
+
+        return mappa;
     }
 
 

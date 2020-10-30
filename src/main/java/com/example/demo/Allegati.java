@@ -14,12 +14,14 @@ public class Allegati {
     List<AllegatiMetadatiCustom> allegatiMetadatiCustoms;
     List<DocumentiMetadatiCustom> documentiMetadatiCustoms;
 
+
+    /// Modifica per andare a prendere e info direttamente dai campi della classe
     public void getAttach(PreservationConfiguration preservationConfiguration) {
 
         System.out.println("Mappa metadati Contiene:");
         for (PreservationConfiguration.ClassiDocumentali.ClasseDocumentale lista : preservationConfiguration.getClassiDocumentali().getClasseDocumentale()) {
-            System.out.println(lista.getId());
-            System.out.println(lista.getTerminiConservazione());
+            System.out.println(getIdDocumento());
+            System.out.println(getTerminiConservazioneDocumento());
             for (PreservationConfiguration.ClassiDocumentali.ClasseDocumentale.Mappings.MetadataSystem.Allegati.Key key : lista.getMappings().getMetadataSystem().getAllegati().getKey()) {
                 System.out.println(key.getField());
                 System.out.println(key.getName());
@@ -92,6 +94,8 @@ public class Allegati {
     public void setTerminiConservazioneDocumento(int terminiConservazioneDocumento) {
         this.terminiConservazioneDocumento = terminiConservazioneDocumento;
     }
+
+
 
 
 }

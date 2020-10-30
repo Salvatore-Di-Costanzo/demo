@@ -28,7 +28,7 @@ public class UpdownUtil {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
             // Upload usando InputStream
-            File LocalFile = new File("C:\\Users\\eiandolo\\Downloads\\commessa.xml");
+            File LocalFile = new File("C:\\Users\\sdicostanzo\\Desktop\\commessa.xml");
 
             String RemoteFile = "commessa.xml";
             InputStream inputStream = new FileInputStream(LocalFile);
@@ -78,7 +78,7 @@ public class UpdownUtil {
 
             // APPROACH #1: using retrieveFile(String, OutputStream)
             String remoteFile = "/commessa.xml";
-            File downloadFile = new File("C:\\Users\\eiandolo\\Desktop\\download\\commessa.xml");
+            File downloadFile = new File("C:\\Users\\sdicostanzo\\Desktop\\download\\commessa.xml");
             OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile));
             boolean success = ftpClient.retrieveFile(remoteFile, outputStream1);
             outputStream1.close();
@@ -124,7 +124,7 @@ public class UpdownUtil {
 
             // Setto il nome del file da eliminare sul Server FTP
 
-            String filename = "/Batch class.zip";
+            String filename = "/commessa.xml";
 
             // Eliminazione File
 

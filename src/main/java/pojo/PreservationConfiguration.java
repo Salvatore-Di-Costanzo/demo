@@ -9,8 +9,9 @@
 package pojo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import javax.xml.bind.Unmarshaller;
+import java.util.Map;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -262,6 +263,15 @@ public class PreservationConfiguration {
         this.classiDocumentali = value;
     }
 
+    public Map<String,Integer> getMap(){
+        Map<String,Integer> variables = new HashMap<>();
+
+        variables.put("MaxPDVSize",getMaxPDVSize());
+        variables.put("MaxPDVDocs",getMaxPDVDocs());
+
+        return variables;
+    }
+
 
     /**
      * <p>Java class for anonymous complex type.
@@ -450,7 +460,7 @@ public class PreservationConfiguration {
          * 
          * 
          */
-        public List<PreservationConfiguration.ClassiDocumentali.ClasseDocumentale> getClasseDocumentale() {
+        public List<PreservationConfiguration.ClassiDocumentali.ClasseDocumentale> getClasseDocumentale() { // modificato in statico per aggiungerlo in una map
             if (classeDocumentale == null) {
                 classeDocumentale = new ArrayList<PreservationConfiguration.ClassiDocumentali.ClasseDocumentale>();
             }

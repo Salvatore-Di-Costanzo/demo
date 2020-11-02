@@ -67,7 +67,7 @@ public class Allegati {
     }
 
 
-
+    /*
     /// Modifica per andare a prendere e info direttamente dai campi della classe
     public void getAttach(PreservationConfiguration preservationConfiguration) {
 
@@ -94,7 +94,7 @@ public class Allegati {
             }
             System.out.println("--------------------------------------------------------------------");
         }
-    }
+    }*/
 
     /// Stampa allegati
     public String getAllegati(List<Allegati> allegati) {
@@ -104,38 +104,38 @@ public class Allegati {
         System.out.println("Mappa metadati Contiene:\n");
         stringa.append("Mappa metadati Contiene:");
         for ( Allegati allegato : allegati ) {
-            System.out.println(allegato.getIdDocumento());
             stringa.append(allegato.getIdDocumento() + "\n");
-            System.out.println(allegato.getTerminiConservazioneDocumento());
             stringa.append((allegato.getTerminiConservazioneDocumento() + "\n"));
+            //System.out.println(allegato.getIdDocumento());
+            //System.out.println(allegato.getTerminiConservazioneDocumento());
             for(AllegatiMetadatiSystem allegatoMetadataSystem : allegato.getAllegatiMetadatiSystems()) {
                 stringa.append(allegatoMetadataSystem.getName() + "\n");
                 stringa.append(allegatoMetadataSystem.getField() + "\n");
-                allegatoMetadataSystem.getName();
-                allegatoMetadataSystem.getField();
+                //allegatoMetadataSystem.getName();
+                //allegatoMetadataSystem.getField();
             }
 
             stringa.append(allegato.getDocumentiMetadatiSystem().getName() + "\n");
             stringa.append(allegato.getDocumentiMetadatiSystem().getField() + "\n");
-            System.out.println(allegato.getDocumentiMetadatiSystem().getName());
-            System.out.println(allegato.getDocumentiMetadatiSystem().getField());
+            //System.out.println(allegato.getDocumentiMetadatiSystem().getName());
+            //System.out.println(allegato.getDocumentiMetadatiSystem().getField());
 
 
 
             for (AllegatiMetadatiCustom allegatoMetadatiCustom : allegato.getAllegatiMetadatiCustoms()) {
                 stringa.append(allegatoMetadatiCustom.getName() + "\n");
                 stringa.append(allegatoMetadatiCustom.getField() + "\n");
-                System.out.println(allegatoMetadatiCustom.getName());
-                System.out.println(allegatoMetadatiCustom.getField());
+                //System.out.println(allegatoMetadatiCustom.getName());
+                //System.out.println(allegatoMetadatiCustom.getField());
             }
             for (DocumentiMetadatiCustom documentoMetadatiCustom : allegato.getDocumentiMetadatiCustoms()) {
                 stringa.append(documentoMetadatiCustom.getName() + "\n");
                 stringa.append(documentoMetadatiCustom.getField() + "\n");
-                System.out.println(documentoMetadatiCustom.getName());
-                System.out.println(documentoMetadatiCustom.getField());
+                //System.out.println(documentoMetadatiCustom.getName());
+                //System.out.println(documentoMetadatiCustom.getField());
             }
             stringa.append("--------------------------------------------------------------------\n");
-            System.out.println("--------------------------------------------------------------------");
+            //System.out.println("--------------------------------------------------------------------");
         }
 
         return stringa.toString();

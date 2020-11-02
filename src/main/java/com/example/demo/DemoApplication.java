@@ -43,7 +43,7 @@ public class DemoApplication {
 
 			System.out.println("-------------------------------------------------------");
 
-			System.out.println("Mappa contiene:");
+			System.out.println("Mappa contiene:\n");
 			Map<String,Integer> variables = preservationConfiguration.getMap();
 			System.out.println(variables.entrySet());
 
@@ -51,14 +51,11 @@ public class DemoApplication {
 
 			Map<String, List<Allegati>> allegati = preservationConfiguration.getMapAllegati();
 
-			//allegatiDoc.getAllegati(allegatiDoc.allegatiList(preservationConfiguration));
-			//System.out.println(allegati.entrySet());
-
 
 			for ( Map.Entry <String, List<Allegati>> allegato  : allegati.entrySet()){
-
-				System.out.println("Chiave = " + allegato.getKey() + ", Valore = " + allegato.toString());
-
+				List<Allegati> appoggio = allegato.getValue();
+				Allegati stamp = new Allegati();
+				System.out.println("Chiave = " + allegato.getKey() + ", Valore = \n" + stamp.getAllegati(appoggio));
 			}
 
 

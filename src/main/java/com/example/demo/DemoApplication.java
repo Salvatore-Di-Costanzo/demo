@@ -50,11 +50,6 @@ public class DemoApplication {
 
 			allegati.getAllegati(allegati.allegatiList(preservationConfiguration));
 
-			System.out.println("ciao");
-
-			System.out.println("ciao2");
-
-
 		}
 		catch (JAXBException e)
 		{

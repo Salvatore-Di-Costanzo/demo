@@ -52,6 +52,8 @@ public class DemoApplication {
 
 			System.out.println("ciao");
 
+			System.out.println("ciao2");
+
 
 		}
 		catch (JAXBException e)

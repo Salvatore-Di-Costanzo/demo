@@ -47,7 +47,11 @@ public class DemoApplication {
 			System.out.println(variables.entrySet());
 
 			Allegati allegati = new Allegati();
-			allegati.getAttach(preservationConfiguration);
+
+			allegati.getAllegati(allegati.allegatiList(preservationConfiguration));
+
+
+
 
 		}
 		catch (JAXBException e)

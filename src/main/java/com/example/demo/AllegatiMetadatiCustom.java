@@ -8,6 +8,11 @@ public class AllegatiMetadatiCustom {
 
     }
 
+    public AllegatiMetadatiCustom(String name, String field) {
+        this.name = name;
+        this.field = field;
+    }
+
     public String getName() {
         return name;
     }

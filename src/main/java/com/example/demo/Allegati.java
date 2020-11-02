@@ -9,10 +9,10 @@ public class Allegati {
 
     private String idDocumento;
     private int terminiConservazioneDocumento;
-    List<AllegatiMetadatiSystem> allegatiMetadatiSystems;
-    DocumentiMetadatiSystem documentiMetadatiSystem;
-    List<AllegatiMetadatiCustom> allegatiMetadatiCustoms;
-    List<DocumentiMetadatiCustom> documentiMetadatiCustoms;
+    List<AllegatiMetadatiSystem> allegatiMetadatiSystems = new ArrayList<>();
+    DocumentiMetadatiSystem documentiMetadatiSystem = new DocumentiMetadatiSystem();
+    List<AllegatiMetadatiCustom> allegatiMetadatiCustoms = new ArrayList<>();
+    List<DocumentiMetadatiCustom> documentiMetadatiCustoms = new ArrayList<>();
 
 
     /// Modifica per andare a prendere e info direttamente dai campi della classe
@@ -47,32 +47,26 @@ public class Allegati {
         List<Allegati> allegati = new ArrayList<>();
 
         for (PreservationConfiguration.ClassiDocumentali.ClasseDocumentale lista : preservationConfiguration.getClassiDocumentali().getClasseDocumentale()) {
-            setIdDocumento(lista.getId());
-            setTerminiConservazioneDocumento(lista.getTerminiConservazione());
+            Allegati allegato = new Allegati();
+            allegato.setIdDocumento(lista.getId());
+            allegato.setTerminiConservazioneDocumento(lista.getTerminiConservazione());
             for (PreservationConfiguration.ClassiDocumentali.ClasseDocumentale.Mappings.MetadataSystem.Allegati.Key key : lista.getMappings().getMetadataSystem().getAllegati().getKey()) {
-                AllegatiMetadatiSystem allegatiMetadatiSystem = new AllegatiMetadatiSystem();
-                allegatiMetadatiSystem.setField(key.getField());
-                allegatiMetadatiSystem.setName(key.getName());
-                allegatiMetadatiSystems.add(allegatiMetadatiSystem);
+                allegato.allegatiMetadatiSystems.add(new AllegatiMetadatiSystem(key.getName(),key.getField()));
             }
 
-            documentiMetadatiSystem.setField(lista.getMappings().getMetadataSystem().getDocPrincipale().getKey().getField());
-            documentiMetadatiSystem.setName(lista.getMappings().getMetadataSystem().getDocPrincipale().getKey().getName());
-
+            allegato.documentiMetadatiSystem.setField(lista.getMappings().getMetadataSystem().getDocPrincipale().getKey().getField());
+            allegato.documentiMetadatiSystem.setName(lista.getMappings().getMetadataSystem().getDocPrincipale().getKey().getName());
 
 
             for (PreservationConfiguration.ClassiDocumentali.ClasseDocumentale.Mappings.MetadataCustom.Allegati.Key key : lista.getMappings().getMetadataCustom().getAllegati().getKey()) {
-                AllegatiMetadatiCustom allegatiMetadatiCustom = new AllegatiMetadatiCustom();
-                allegatiMetadatiCustom.setField(key.getField());
-                allegatiMetadatiCustom.setName(key.getName());
-                allegatiMetadatiCustoms.add(allegatiMetadatiCustom);
+                allegato.allegatiMetadatiCustoms.add(new AllegatiMetadatiCustom(key.getName(),key.getField()));
             }
+
             for (PreservationConfiguration.ClassiDocumentali.ClasseDocumentale.Mappings.MetadataCustom.DocPrincipale.Key key : lista.getMappings().getMetadataCustom().getDocPrincipale().getKey()) {
-                DocumentiMetadatiCustom documentiMetadatiCustom = new DocumentiMetadatiCustom();
-                documentiMetadatiCustom.setField(key.getField());
-                documentiMetadatiCustom.setName(key.getName());
-                documentiMetadatiCustoms.add(documentiMetadatiCustom);
+                allegato.documentiMetadatiCustoms.add(new DocumentiMetadatiCustom(key.getName(),key.getField()));
             }
+
+            allegati.add(allegato);
         }
 
 
@@ -94,6 +88,69 @@ public class Allegati {
     public void setTerminiConservazioneDocumento(int terminiConservazioneDocumento) {
         this.terminiConservazioneDocumento = terminiConservazioneDocumento;
     }
+
+    public List<AllegatiMetadatiSystem> getAllegatiMetadatiSystems() {
+        return allegatiMetadatiSystems;
+    }
+
+    public void setAllegatiMetadatiSystems(List<AllegatiMetadatiSystem> allegatiMetadatiSystems) {
+        this.allegatiMetadatiSystems = allegatiMetadatiSystems;
+    }
+
+    public DocumentiMetadatiSystem getDocumentiMetadatiSystem() {
+        return documentiMetadatiSystem;
+    }
+
+    public void setDocumentiMetadatiSystem(DocumentiMetadatiSystem documentiMetadatiSystem) {
+        this.documentiMetadatiSystem = documentiMetadatiSystem;
+    }
+
+    public List<AllegatiMetadatiCustom> getAllegatiMetadatiCustoms() {
+        return allegatiMetadatiCustoms;
+    }
+
+    public void setAllegatiMetadatiCustoms(List<AllegatiMetadatiCustom> allegatiMetadatiCustoms) {
+        this.allegatiMetadatiCustoms = allegatiMetadatiCustoms;
+    }
+
+    public List<DocumentiMetadatiCustom> getDocumentiMetadatiCustoms() {
+        return documentiMetadatiCustoms;
+    }
+
+    public void setDocumentiMetadatiCustoms(List<DocumentiMetadatiCustom> documentiMetadatiCustoms) {
+        this.documentiMetadatiCustoms = documentiMetadatiCustoms;
+    }
+
+    /// Modifica per andare a prendere e info direttamente dai campi della classe
+    public void getAllegati(List<Allegati> allegati) {
+
+        System.out.println("Mappa metadati Contiene:");
+        for ( Allegati allegato : allegati ) {
+            System.out.println(allegato.getIdDocumento());
+            System.out.println(allegato.getTerminiConservazioneDocumento());
+            for(AllegatiMetadatiSystem allegatoMetadataSystem : allegato.getAllegatiMetadatiSystems()) {
+                allegatoMetadataSystem.getName();
+                allegatoMetadataSystem.getField();
+            }
+
+            System.out.println(allegato.getDocumentiMetadatiSystem().getName());
+            System.out.println(allegato.getDocumentiMetadatiSystem().getField());
+
+
+
+            for (AllegatiMetadatiCustom allegatoMetadatiCustom : allegato.getAllegatiMetadatiCustoms()) {
+                System.out.println(allegatoMetadatiCustom.getName());
+                System.out.println(allegatoMetadatiCustom.getField());
+            }
+            for (DocumentiMetadatiCustom documentoMetadatiCustom : allegato.getDocumentiMetadatiCustoms()) {
+                System.out.println(documentoMetadatiCustom.getName());
+                System.out.println(documentoMetadatiCustom.getField());
+            }
+            System.out.println("--------------------------------------------------------------------");
+        }
+    }
+
+
 
 
 

@@ -7,6 +7,11 @@ public class DocumentiMetadatiCustom {
     public DocumentiMetadatiCustom() {
     }
 
+    public DocumentiMetadatiCustom(String name, String field) {
+        this.name = name;
+        this.field = field;
+    }
+
     public String getName() {
         return name;
     }

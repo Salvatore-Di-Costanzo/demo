@@ -7,6 +7,11 @@ public class AllegatiMetadatiSystem {
     public AllegatiMetadatiSystem() {
     }
 
+    public AllegatiMetadatiSystem(String name, String field) {
+        this.name = name;
+        this.field = field;
+    }
+
     public String getName() {
         return name;
     }

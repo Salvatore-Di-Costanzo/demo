@@ -274,13 +274,12 @@ public class PreservationConfiguration {
         return variables;
     }
 
-    public Map<String, Allegati> getMapAllegati(){
+    public Map<String, List<Allegati>> getMapAllegati(){
         Allegati allegati = new Allegati();
-        allegati.allegatiList(this);
 
-        Map<String, Allegati> mappa = new HashMap<>();
+        Map<String, List<Allegati> >mappa = new HashMap<>();
 
-        mappa.put("Allegati",allegati);
+        mappa.put("Allegati",allegati.allegatiList(this));
 
         return mappa;
     }

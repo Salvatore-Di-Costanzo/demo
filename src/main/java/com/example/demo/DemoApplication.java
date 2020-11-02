@@ -50,7 +50,7 @@ public class DemoApplication {
 
 			allegati.getAllegati(allegati.allegatiList(preservationConfiguration));
 
-
+			System.out.println("ciao");
 
 
 		}

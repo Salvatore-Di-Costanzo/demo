@@ -16,8 +16,6 @@ public class Allegati {
 
 
 
-
-
     public String getIdDocumento() {
         return idDocumento;
     }
@@ -101,8 +99,8 @@ public class Allegati {
 
         StringBuilder stringa = new StringBuilder();
 
-        System.out.println("Mappa metadati Contiene:\n");
-        stringa.append("Mappa metadati Contiene:");
+        //System.out.println("Mappa metadati Contiene:\n");
+        stringa.append("Mappa metadati Contiene:\n");
         for ( Allegati allegato : allegati ) {
             stringa.append(allegato.getIdDocumento() + "\n");
             stringa.append((allegato.getTerminiConservazioneDocumento() + "\n"));

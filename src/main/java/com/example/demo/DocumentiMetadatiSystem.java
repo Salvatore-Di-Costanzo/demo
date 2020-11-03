@@ -4,8 +4,6 @@ public class DocumentiMetadatiSystem {
     private String name;
     private String field;
 
-    public DocumentiMetadatiSystem() {
-    }
 
     public String getName() {
         return name;

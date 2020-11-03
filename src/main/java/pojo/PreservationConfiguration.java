@@ -2121,18 +2121,6 @@ public class PreservationConfiguration {
                                 this.preservationPurpose = value;
                             }
 
-                            /*
-                            void beforeUnmarshal(Unmarshaller unmarshaller, Object parent) {
-                                System.out.println("Before Unmarshaller Callback");
-                            }
-
-                            // It is called after all the properties are unmarshalled for this object,
-                            // but before this object is set to the parent object.
-                            void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
-                                System.out.println("After Unmarshaller Callback");
-                            }
-
-                             */
                         }
 
                     }

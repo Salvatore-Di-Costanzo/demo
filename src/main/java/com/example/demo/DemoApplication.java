@@ -10,10 +10,13 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 
 public class DemoApplication {
 
+	private static final java.util.logging.Logger log =
+			java.util.logging.Logger.getLogger(DemoApplication.class.getName());
 
 	public static void main(String[] args)
 	{
@@ -28,6 +31,7 @@ public class DemoApplication {
 
 		File xmlFile = new File(fileName);
 
+
 		JAXBContext jaxbContext;
 		try
 		{
@@ -36,18 +40,17 @@ public class DemoApplication {
 
 			PreservationConfiguration preservationConfiguration = (PreservationConfiguration) jaxbUnmarshaller.unmarshal(xmlFile);
 
-			System.out.println("-------------------------------------------------------");
+			log.info("-------------------------------------------------------");
 
-			System.out.println(preservationConfiguration.getMaxPDVDocs());
-			System.out.println(preservationConfiguration.getMaxPDVSize());
+			log.info("MaxPDVDocs: " + preservationConfiguration.getMaxPDVDocs());
+			log.info("MaxPDVSize: " +preservationConfiguration.getMaxPDVSize());
 
-			System.out.println("-------------------------------------------------------");
+			log.info("-------------------------------------------------------");
 
-			System.out.println("Mappa contiene:\n");
 			Map<String,Integer> variables = preservationConfiguration.getMap();
-			System.out.println(variables.entrySet());
+			log.log(Level.SEVERE, () -> "Mappa contiene:\n" + variables.entrySet());
 
-			Allegati allegatiDoc = new Allegati();
+
 
 			Map<String, List<Allegati>> allegati = preservationConfiguration.getMapAllegati();
 
@@ -55,10 +58,8 @@ public class DemoApplication {
 			for ( Map.Entry <String, List<Allegati>> allegato  : allegati.entrySet()){
 				List<Allegati> appoggio = allegato.getValue();
 				Allegati stamp = new Allegati();
-				System.out.println("Chiave = " + allegato.getKey() + ", Valore = \n" + stamp.getAllegati(appoggio));
+				log.info("Chiave = " + allegato.getKey() + ", Valore = \n" + stamp.getAllegati(appoggio));
 			}
-
-
 
 
 		}

@@ -106,8 +106,6 @@ class AllegatiTest {
         Allegati allegato = new Allegati();
 
         // Verify the results
-        /*verify(allegatiUnderTest.documentiMetadatiSystem).setField("field");
-        verify(allegatiUnderTest.documentiMetadatiSystem).setName("name");*/
         Assert.assertNotNull(result);
         Assert.assertEquals("Mappa metadati Contiene:\n" +
                 "value\n" +

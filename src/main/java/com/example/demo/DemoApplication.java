@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -18,13 +19,17 @@ public class DemoApplication {
 	private static final java.util.logging.Logger log =
 			java.util.logging.Logger.getLogger(DemoApplication.class.getName());
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
+		try{
 		UpdownUtil util = new UpdownUtil();
 		util.upload();
 		String fileName = util.download();
 
 		jaxbXmlFileToObject(fileName);
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	private static void jaxbXmlFileToObject(String fileName) {

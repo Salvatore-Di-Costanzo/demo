@@ -6,43 +6,51 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.util.logging.Level;
 
 @Component
 public class UpdownUtil {
 
+    private static final java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(UpdownUtil.class.getName());
+
+
+    private static String server = "ftp.dlptest.com";
+    private static String user = "dlpuser@dlptest.com";
+    private static String pass = "eUj8GeW55SvYaswqUyDSm5v6N";
+
     // Upload sul server FTP
 
-    public String upload() {
+    public String upload() throws IOException {
+
+        String uri = "C:\\Users\\sdicostanzo\\Desktop\\commessa.xml";
         //Impostazioni server FTP di prova - durata permanenza archivio 30 min
-        String server = "ftp.dlptest.com";
-        String user = "dlpuser@dlptest.com";
-        String pass = "eUj8GeW55SvYaswqUyDSm5v6N";
+
 
         FTPClient ftpClient = new FTPClient();
-        try {
+        ftpClient.connect(server);
+        ftpClient.login(user, pass);
+        ftpClient.enterLocalPassiveMode();
 
-            ftpClient.connect(server);
-            ftpClient.login(user, pass);
-            ftpClient.enterLocalPassiveMode();
+        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+        // Upload usando InputStream
+        File localFile = new File(uri);
 
-            // Upload usando InputStream
-            File LocalFile = new File("C:\\Users\\sdicostanzo\\Desktop\\commessa.xml");
+        String remoteFile = "commessa.xml";
+        try ( InputStream inputStream = new FileInputStream(localFile) ) {
 
-            String RemoteFile = "commessa.xml";
-            InputStream inputStream = new FileInputStream(LocalFile);
 
-            System.out.println("Inizio l'Upload dell'archivio");
-            boolean done = ftpClient.storeFile(RemoteFile, inputStream);
-            inputStream.close();
+
+            log.info("Inizio l'Upload dell'archivio");
+            boolean done = ftpClient.storeFile(remoteFile, inputStream);
             if (done) {
-                System.out.println("L'archivio è stato correttamente caricato.");
+                log.info("L'archivio è stato correttamente caricato.");
             }
             return "Upload Terminato";
 
         } catch (IOException ex) {
-            System.out.println("Error: " + ex.getMessage());
+            log.log(Level.SEVERE, () ->"Error: " + ex.getMessage());
             ex.printStackTrace();
         } finally {
             try {
@@ -61,35 +69,37 @@ public class UpdownUtil {
     // Download dal server FTP
 
 
-    public String download() {
+    public String download() throws IOException {
+
+        String uri = "C:\\Users\\sdicostanzo\\Desktop\\download\\commessa.xml";
+
         //Impostazioni server FTP di prova - durata permanenza archivio 30 min
-        String server = "ftp.dlptest.com";
-        String user = "dlpuser@dlptest.com";
-        String pass = "eUj8GeW55SvYaswqUyDSm5v6N";
+
 
         FTPClient ftpClient = new FTPClient();
-        try {
-
-            ftpClient.connect(server);
-            ftpClient.login(user, pass);
-            ftpClient.enterLocalPassiveMode();
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+        ftpClient.connect(server);
+        ftpClient.login(user, pass);
+        ftpClient.enterLocalPassiveMode();
+        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
 
-            // APPROACH #1: using retrieveFile(String, OutputStream)
-            String remoteFile = "/commessa.xml";
-            File downloadFile = new File("C:\\Users\\sdicostanzo\\Desktop\\download\\commessa.xml");
-            OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile));
+        // APPROACH #1: using retrieveFile(String, OutputStream)
+        String remoteFile = "/commessa.xml";
+        File downloadFile = new File(uri);
+        try ( OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile))) {
+
+
+
             boolean success = ftpClient.retrieveFile(remoteFile, outputStream1);
-            outputStream1.close();
+
 
             if (success) {
-                System.out.println("File scaricato correttamente");
+                log.info("File scaricato correttamente");
 
                 return downloadFile.toString();
             }
         } catch (IOException ex) {
-            System.out.println("Error: " + ex.getMessage());
+            log.log(Level.SEVERE, () ->"Error: " + ex.getMessage());
             ex.printStackTrace();
         } finally {
             try {
@@ -111,9 +121,8 @@ public class UpdownUtil {
     public String delete() {
 
         //Impostazioni server FTP di prova - durata permanenza archivio 30 min
-        String server = "ftp.dlptest.com";
-        String user = "dlpuser@dlptest.com";
-        String pass = "eUj8GeW55SvYaswqUyDSm5v6N";
+
+        String nome = "/commessa.xml";
 
         FTPClient client = new FTPClient();
         try {
@@ -122,20 +131,16 @@ public class UpdownUtil {
 
             client.login(user, pass);
 
-            // Setto il nome del file da eliminare sul Server FTP
-
-            String filename = "/commessa.xml";
-
             // Eliminazione File
 
-            boolean exist = client.deleteFile(filename);
+            boolean exist = client.deleteFile(nome);
             client.logout();
 
             // Norifichiamo all'utente il risultato
             if (exist)
-                return "File '" + filename + "' eliminato...";
+                return "File '" + nome + "' eliminato...";
             else
-                return "File '" + filename + "' non esiste...";
+                return "File '" + nome + "' non esiste...";
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -5,10 +5,13 @@ import pojo.PreservationConfiguration;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URL;
 
 public class XmlToJavaObj {
+
+    private static final java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(XmlToJavaObj.class.getName());
 
 
     UpdownUtil updown = new UpdownUtil();
@@ -20,6 +23,8 @@ public class XmlToJavaObj {
 
     PreservationConfiguration employee = (PreservationConfiguration) jaxbUnmarshaller.unmarshal( url );
 
-    public XmlToJavaObj() throws JAXBException, MalformedURLException {
+
+    public XmlToJavaObj() throws JAXBException, IOException {
+        log.info("");
     }
 }

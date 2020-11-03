@@ -21,11 +21,11 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		try{
-		UpdownUtil util = new UpdownUtil();
-		util.upload();
-		String fileName = util.download();
+			UpdownUtil util = new UpdownUtil();
+			util.upload();
+			String fileName = util.download();
 
-		jaxbXmlFileToObject(fileName);
+			jaxbXmlFileToObject(fileName);
 		}
 		catch (IOException e){
 			e.printStackTrace();
